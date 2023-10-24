@@ -1,9 +1,10 @@
-from utils import validar_celda
+from utils import validar_celda, mover_celda_contigua
 import tablero
 
 # Dimensiones tablero
 max_raw = 4
 max_col = 'd'
+
 
 class Personaje:
     def __init__(self, vida, danyo, posicion, enfriamiento, habilidad, rango):
@@ -14,6 +15,7 @@ class Personaje:
         self.enfriamiento = enfriamiento
         self.habilidad = habilidad
         self.rango = rango
+
 
 class Medico(Personaje):
     def curar_personaje(self, casilla):
@@ -57,3 +59,16 @@ tablero.tablero['a1'] = medico
 tablero.tablero['c1'] = inteligencia
 tablero.tablero['d3'] = artillero
 tablero.tablero['c4'] = francotirador
+
+
+francotirador.disparo_unitario('a1')
+print(medico.vida_actual)
+medico.curar_personaje('a1')
+print(medico.vida_actual)
+
+inteligencia.explorar_area('a1')
+artillero.disparo_area('a1')
+print(medico.vida_actual)
+
+mover_celda_contigua('a1', 'a2')
+inteligencia.explorar_area('a1')
