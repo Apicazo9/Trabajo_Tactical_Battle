@@ -6,6 +6,7 @@ for fila in range(1, 5):
     for columna in ['a', 'b', 'c', 'd']:
         casilla = f"{columna}{fila}"
         tablero[casilla] = ""
+        tablero[casilla] = None
 
 # Función para imprimir el tablero
 def imprimir_tablero(tablero):
@@ -16,8 +17,7 @@ def imprimir_tablero(tablero):
         print()
 
 # Ejemplo de uso
-tablero['b2'] = 'X'
-#tablero['c3'] = 'O'
+
 
 
 imprimir_tablero(tablero)
