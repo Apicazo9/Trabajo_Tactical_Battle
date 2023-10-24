@@ -19,4 +19,5 @@ def imprimir_tablero(tablero):
 tablero['b2'] = 'X'
 #tablero['c3'] = 'O'
 
+
 imprimir_tablero(tablero)
