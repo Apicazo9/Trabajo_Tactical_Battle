@@ -31,7 +31,7 @@ class Francotirador(Personaje):
 
 class Artillero(Personaje):
     def disparo_area(self, casilla):
-        adjacentes = [(casilla[0], casilla[1]), (chr(ord(casilla[0]) + 1), casilla[1]), (casilla[0], chr(ord(casilla[1]) + 1)), (chr(ord(casilla[0]) + 1), chr(ord(casilla[1]) + 1))]
+        adjacentes = [(casilla[0] + casilla[1]), (chr(ord(casilla[0]) + 1) + casilla[1]), (casilla[0] + chr(ord(casilla[1]) + 1)), (chr(ord(casilla[0]) + 1) + chr(ord(casilla[1]) + 1))]
         for adj in adjacentes:
             if validar_celda(adj, 'd', 4):
                 if isinstance(tablero.tablero[adj], Personaje):
@@ -40,7 +40,7 @@ class Artillero(Personaje):
 
 class Inteligencia(Personaje):
     def explorar_area(self, casilla):
-        adjacentes = [(casilla[0], casilla[1]), (chr(ord(casilla[0]) + 1), casilla[1]), (casilla[0], chr(ord(casilla[1]) + 1)), (chr(ord(casilla[0]) + 1), chr(ord(casilla[1]) + 1))]
+        adjacentes = [str(casilla[0] + casilla[1]), (chr(ord(casilla[0]) + 1) + casilla[1]), (casilla[0] + chr(ord(casilla[1]) + 1)), (chr(ord(casilla[0]) + 1) + chr(ord(casilla[1]) + 1))]
         for adj in adjacentes:
             if validar_celda(adj, 'd', 4):
                 print(tablero.tablero[adj])
@@ -57,6 +57,3 @@ tablero.tablero['a1'] = medico
 tablero.tablero['c1'] = inteligencia
 tablero.tablero['d3'] = artillero
 tablero.tablero['c4'] = francotirador
-
-
-
