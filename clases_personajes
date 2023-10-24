@@ -1,0 +1,40 @@
+import tablero
+
+class Personaje:
+    def __init__(self, vida, danyo, posicion, enfriamiento, habilidad, rango):
+        self.vida_actual = vida
+        self.vida_maxima = vida
+        self.danyo = danyo
+        self.posicion =posicion
+        self.enfiamiento = enfriamiento
+        self.habilidad = habilidad
+        self.rango = rango
+
+
+class Medico(Personaje):
+    def curar_personaje(self, objetivo):
+        objetivo.vida_actual = objetivo.vida_maxima
+
+
+class Francotirador(Personaje):
+    def disparo_unitario(self, objetivo):
+        if self.rango == 'militar':
+            objetivo.vida_actual = 0
+        else:
+            print("No puedes disparar a este objetivo.")
+
+
+class Artillero(Personaje):
+    def disparo_area(self, objetivo1, objetivo2, objetivo3, objetivo4):
+        if self.rango == 'militar':
+            for objetivo in [objetivo1, objetivo2, objetivo3, objetivo4]:
+                objetivo.vida_actual -= 1
+
+class Intelgencia(Personaje):
+    def explorar_area(self,  ):
+
+
+
+
+
+
