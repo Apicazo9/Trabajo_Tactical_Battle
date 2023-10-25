@@ -1,7 +1,7 @@
-#from clases import Medico
-#from clases import Artillero
-#from clases import Francotirador
-#from clases import Inteligencia
+from clases_personajes import Medico
+from clases_personajes import Artillero
+from clases_personajes import Francotirador
+from clases_personajes import Inteligencia
 class Jugador:
     def __init__(self):
         self.oponente = None
@@ -9,6 +9,8 @@ class Jugador:
         self.informe = ""
 
     def turno(self) -> bool:
+        return Artillero.vida_actual == 0 and Francotirador.vida_actual == 0
+
     def realizar_accion() -> str:
     def recibir_accion(str) -> None / dict():
     def crear_equipo():
