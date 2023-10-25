@@ -13,22 +13,55 @@ class Jugador:
         return Artillero.vida_actual == 0 and Francotirador.vida_actual == 0
 
     def realizar_accion(contador, num_accion) -> str:
+        frase_mover = 'Indica las coordenadas de la celda donde quieres moverte: '
+        frase_disparar = 'Indica las coordenadas de la esquina superior izquierda en la que disparar (área 2x2): '
         if contador == 0:
             if num_accion == 1:
-                celda = input('Indica las coordenadas de la celda donde quieres moverte: ')
+                celda = input(frase_mover)
                 Medico.mover(celda)
             elif num_accion == 2:
-                celda = input('Indica las coordenadas de la celda donde quieres moverte: ')
+                celda = input(frase_mover)
+                Artillero.mover(celda)
             elif num_accion == 3:
+                celda = input(frase_disparar)
+                artillero.habilidad(celda)
             elif num_accion == 4:
+                celda = input(frase_mover)
+                Francotirador.mover(celda)
             elif num_accion == 5:
+                celda = input(frase_disparar)
+                artillero.habilidad(celda)
             elif num_accion == 6:
+                celda = input(frase_mover)
+                Inteligencia.mover(celda)
             elif num_accion == 7:
+                celda = input('Indica las coordenadas de la esquina superior izquierda de la zona de observación (área 2x2):')
+                inteligencia.habilidad(celda)
         else:
             if num_accion == 1:
-
-            elif num_accion ==2:
-
+                celda = input(frase_mover)
+                Medico.mover(celda)
+            elif num_accion == 2:
+                celda = input('Indica las coordenadas de la celda en la que curar: ')
+                medico.habilidad(celda)
+            elif num_accion == 3:
+                celda = input(frase_mover)
+                Artillero.mover(celda)
+            elif num_accion == 4:
+                celda = input(frase_disparar)
+                artillero.habilidad(celda)
+            elif num_accion == 5:
+                celda = input(frase_mover)
+                Francotirador.mover(celda)
+            elif num_accion == 6:
+                celda = input(frase_disparar)
+                artillero.habilidad(celda)
+            elif num_accion == 7:
+                celda = input(frase_mover)
+                Inteligencia.mover(celda)
+            elif num_accion == 8:
+                celda = input('Indica las coordenadas de la esquina superior izquierda de la zona de observación (área 2x2):')
+                inteligencia.habilidad(celda)
 
     def recibir_accion(str) -> None / dict():
     def crear_equipo(self):
