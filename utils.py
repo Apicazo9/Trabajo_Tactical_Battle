@@ -1,11 +1,11 @@
 import tablero
 
-max_raw = 4
+max_row = 4
 max_col = 'd'
 
 # comprobar si una posicion es valida
-def validar_celda (celda, max_col, max_raw) -> bool:
-    return (celda[0] >= 'a' and celda[0] <= max_col) and (celda[1] >= '1' and celda[1] <= str(max_raw))
+def validar_celda (celda, max_col, max_row) -> bool:
+    return (celda[0] >= 'a' and celda[0] <= max_col) and (celda[1] >= '1' and celda[1] <= str(max_row))
 
 
 # comprobar si un miembro del equipo ya ocupa una celda dada
@@ -14,11 +14,16 @@ def comprobar_celda_disponible(celda, equipo) -> bool:
 
 
 # comprobar celda contigua
-def validar_celda_contigua(celda1, celda2):
-    return (chr(ord(celda1[0]) + 1) == celda2[0] or chr(ord(celda1[0]) - 1) == celda2[0]) or (chr(ord(celda1[1]) + 1) == celda2[1] or chr(ord(celda1[1]) - 1) == celda2[1])
+def validar_celda_contigua(celda_actual, celda_nueva):
+    return (chr(ord(celda_actual[0]) + 1) == celda_nueva[0] or chr(ord(celda_actual[0]) - 1) == celda_nueva[0]) or (chr(ord(celda_actual[1]) + 1) == celda_nueva[1] or chr(ord(celda_actual[1]) - 1) == celda_nueva[1])
 
 # mover celda
-def mover_celda_contigua(celda1, celda2):
-    if (validar_celda(celda1, max_col, max_raw) and validar_celda(celda2, max_col, max_raw)) and (validar_celda_contigua(celda1, celda2)):
-        tablero.tablero[celda2] = tablero.tablero[celda1]
-        tablero.tablero[celda1] = None
+# le he cambiado el nombre de mover_celda_contigua a mover
+def mover(celda_nueva, celda_actual):
+    col = celda_nueva[0]
+    row = celda_nueva[1]
+    if validar_celda(celda_nueva, max_col, max_row) and validar_celda_contigua(col, row):
+        self.posicion
+
+        #tablero.tablero[row] = tablero.tablero[row]
+        #tablero.tablero[row] = None

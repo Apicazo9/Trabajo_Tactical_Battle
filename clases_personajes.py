@@ -1,4 +1,4 @@
-from utils import validar_celda, mover_celda_contigua
+from utils import validar_celda, validar_celda_contigua
 import tablero
 
 # Dimensiones tablero
@@ -14,6 +14,13 @@ class Personaje:
         self.enfriamiento = enfriamiento
         self.habilidad = habilidad
         self.rango = rango
+
+    def mover(self, celda_nueva, max_col, max_row):
+        col = celda_nueva[0]
+        row = celda_nueva[1]
+        if validar_celda(celda_nueva, max_col, max_row) and validar_celda_contigua(col, row):
+            self.posicion = celda_nueva
+        return None
 
 class Medico(Personaje):
     def curar_personaje(self, casilla):
@@ -40,6 +47,7 @@ class Inteligencia(Personaje):
                 print(tablero.tablero[adj])
             else:
                 print('Fuera de rango')
+
 medico = Medico(3, 0, 'a1', 1, 'curar personaje', 'no militar')
 inteligencia = Inteligencia(3, 0, 'c1', 1, 'explorar area', 'no militar')
 artillero = Artillero(3, 1, 'd3', 1, 'disparo area', 'militar')

@@ -85,6 +85,8 @@ def main():
                 print("6: Mover (Inteligencia)")
                 print("7: Revelar a los enemigos en un área 2x2. (Inteligencia)")
 
+            num_accion = input('Selecciona la acción de este turno: ')
+            j1.realizar_accion(num_accion, contador)
 
         input('Jugador 1, pulsa intro para terminar tu turno')
         limpiar_terminal()
