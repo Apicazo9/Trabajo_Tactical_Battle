@@ -1,6 +1,3 @@
-max_row = 4
-max_col = 'd'
-
 def limpiar_terminal():
     print(chr(27) + "[2J")
 
@@ -8,11 +5,9 @@ def limpiar_terminal():
 def validar_celda (celda, max_col, max_row) -> bool:
     return (celda[0] >= 'a' and celda[0] <= max_col) and (celda[1] >= '1' and celda[1] <= str(max_row))
 
-
 # comprobar si un miembro del equipo ya ocupa una celda dada
 def comprobar_celda_disponible(celda, equipo) -> bool:
      return tablero.tablero[celda] == equipo   #me falta ver como has hecho las listas de los equipos ;)
-
 
 # comprobar celda contigua
 def validar_celda_contigua(celda_actual, celda_nueva):

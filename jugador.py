@@ -9,13 +9,14 @@ class Jugador:
         self.informe = ""
 
     def turno(self) -> bool:
-        return Artillero.vida_actual == 0 and Francotirador.vida_actual == 0
+        return personajes.Artillero.vida_actual == 0 and personajes.Francotirador.vida_actual == 0
 
     def obtener_coordenadas(celda):
         # Suponiendo que 'celda' es una tupla (x, y)
         x, y = celda
         return x, y
     def personajes_en_area(celda, personajes):
+        pass
         x, y = obtener_coordenadas(celda)
         personajes_afectados = []
 
@@ -33,64 +34,64 @@ class Jugador:
         if contador == 0:
             if num_accion == 1:
                 celda = input(frase_mover)
-                Medico.mover(celda)
+                personajes.Medico.mover(celda)
                 return ""
             elif num_accion == 2:
                 celda = input(frase_mover)
-                Artillero.mover(celda)
+                personajes.Artillero.mover(celda)
                 return ""
             elif num_accion == 3:
                 celda = input(frase_disparar)
-                habilidad = artillero.habilidad(celda)
+                habilidad = personajes.Artillero.habilidad(celda)
                 return habilidad
             elif num_accion == 4:
                 celda = input(frase_mover)
-                Francotirador.mover(celda)
+                personajes.Francotirador.mover(celda)
                 return ''
             elif num_accion == 5:
                 celda = input(frase_disparar)
-                artillero.habilidad(celda)
+                personajes.Artillero.habilidad(celda)
                 return habilidad
             elif num_accion == 6:
                 celda = input(frase_mover)
-                Inteligencia.mover(celda)
+                personajes.Inteligencia.mover(celda)
                 return ''
             elif num_accion == 7:
                 celda = input('Indica las coordenadas de la esquina superior izquierda de la zona de observación (área 2x2):')
-                habilidad = inteligencia.habilidad(celda)
+                habilidad = personajes.Inteligencia.habilidad(celda)
                 return habilidad
         else:
             if num_accion == 1:
                 celda = input(frase_mover)
-                Medico.mover(celda)
+                personajes.Medico.mover(celda, max_col='d', max_row=4)
                 return celda
             elif num_accion == 2:
                 celda = input('Indica las coordenadas de la celda en la que curar: ')
-                medico.habilidad(celda)
+                personajes.Medico.habilidad(celda)
                 return celda
             elif num_accion == 3:
                 celda = input(frase_mover)
-                Artillero.mover(celda)
+                personajes.Artillero.mover(celda)
                 return celda
             elif num_accion == 4:
                 celda = input(frase_disparar)
-                artillero.habilidad(celda)
+                personajes.Artillero.habilidad(celda)
                 return celda
             elif num_accion == 5:
                 celda = input(frase_mover)
-                Francotirador.mover(celda)
+                personajes.Francotirador.mover(celda)
                 return celda
             elif num_accion == 6:
                 celda = input(frase_disparar)
-                artillero.habilidad(celda)
+                personajes.Artillero.habilidad(celda)
                 return celda
             elif num_accion == 7:
                 celda = input(frase_mover)
-                Inteligencia.mover(celda)
+                personajes.Inteligencia.mover(celda)
                 return celda
             elif num_accion == 8:
                 celda = input('Indica las coordenadas de la esquina superior izquierda de la zona de observación (área 2x2):')
-                inteligencia.habilidad(celda)
+                personajes.Inteligencia.habilidad(celda)
                 return celda
     def recibir_accion(self, accion):
         inicial_personaje = accion[:1]

@@ -1,8 +1,4 @@
 from utils import validar_celda, validar_celda_contigua
-
-# Dimensiones tablero
-max_raw = 4
-max_col = 'd'
 class Personaje:
     def __init__(self, vida, rango, posicion):
             self.vida_maxima = vida
@@ -26,6 +22,7 @@ class Artillero(Personaje):
     def __int__(self, posicion):
         super().__init__(2, 'militar', posicion)
     def disparo_area(self, casilla):
+        pass
 class Francotirador(Personaje):
     def __int__(self, posicion):
         super().__init__(3, 'militar', posicion)
