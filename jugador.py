@@ -107,10 +107,10 @@ class Jugador:
                 if celda == personaje.posicion:
                     personaje.vida_actual = 0
     def crear_equipo(self, posiciones):
-        self.equipo.append(personajes.Medico(posiciones[0])
-        self.equipo.append(personajes.Artillero(posiciones[1])
-        self.equipo.append(personajes.Francotirador(posiciones[2])
-        self.equipo.append(personajes.Inteligencia(posiciones[3])
+        self.equipo.append(personajes.Medico(posiciones[0]))
+        self.equipo.append(personajes.Artillero(posiciones[1]))
+        self.equipo.append(personajes.Francotirador(posiciones[2]))
+        self.equipo.append(personajes.Inteligencia(posiciones[3]))
     def posicionar_equipo(self, posicion, num_personaje):
     #num_personaje: medico(0), artillero(1), francotirador(2), inteligencia(3)
         self.equipo[num_personaje].posicion = posicion
