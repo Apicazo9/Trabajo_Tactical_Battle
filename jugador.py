@@ -1,6 +1,6 @@
 from utils import personajes_en_area
 from utils import devolver_area
-from personajes import Personaje
+import personajes
 
 class Jugador:
     def __init__(self):
@@ -92,7 +92,6 @@ class Jugador:
                 celda = input('Indica las coordenadas de la esquina superior izquierda de la zona de observación (área 2x2):')
                 inteligencia.habilidad(celda)
                 return celda
-
     def recibir_accion(self, accion):
         inicial_personaje = accion[:1]
         celda = accion[1:]
@@ -108,10 +107,10 @@ class Jugador:
                 if celda == personaje.posicion:
                     personaje.vida_actual = 0
     def crear_equipo(self, posiciones):
-        self.equipo.append(Personaje('medico', 1, 'no militar', posiciones[0]))
-        self.equipo.append(Personaje('artillero', 2, 'militar', posiciones[1]))
-        self.equipo.append(Personaje('francotirador', 3, 'militar', posiciones[2]))
-        self.equipo.append(Personaje('inteligencia', 2, 'no militar', posiciones[3]))
+        self.equipo.append(personajes.Medico(posiciones[0])
+        self.equipo.append(personajes.Artillero(posiciones[1])
+        self.equipo.append(personajes.Francotirador(posiciones[2])
+        self.equipo.append(personajes.Inteligencia(posiciones[3])
     def posicionar_equipo(self, posicion, num_personaje):
     #num_personaje: medico(0), artillero(1), francotirador(2), inteligencia(3)
         self.equipo[num_personaje].posicion = posicion
