@@ -15,17 +15,28 @@ class Personaje:
         return None
     def habilidad(self, atacante, casilla, lista_equipo):
         lista_afectados = []
-        if atacante == 'artillero' or atacante == 'inteligencia':
-            if validar_celda(casilla, 'd', 4) and (atacante.enfriamineto == 0):
+        if validar_celda(casilla, 'd', 4) and (atacante.enfriamineto == 0):
+            if atacante == 'artillero' or atacante == 'inteligencia':
                 area = devolver_area(casilla)
                 for personaje in lista_equipo:
                     for celda in area:
                         if personaje.posicion == celda:
                             lista_afectados.append(atacante[0] + casilla)
-                    return lista_afectados
-
-
-
+                    if len(lista_afectados) == 0:
+                        return None
+                    else:
+                        return lista_afectados
+            else:
+                for personaje in lista_equipo:
+                    if personaje.posicion == casilla:
+                        lista_afectados.append(atacante[0] + casilla) 
+                    if len(lista_afectados) == 0:
+                        return None
+                    else:        
+                        return lista_afectados                      
+        else:
+            return None
+            
 class Medico(Personaje):
     def __init__(self, posicion):
         super().__init__(1, 'no militar', posicion)
