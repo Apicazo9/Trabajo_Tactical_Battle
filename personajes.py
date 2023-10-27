@@ -29,33 +29,33 @@ class Personaje:
             else:
                 for personaje in lista_equipo:
                     if personaje.posicion == casilla:
-                        lista_afectados.append(atacante[0] + casilla) 
+                        lista_afectados.append(atacante[0] + casilla)
                     if len(lista_afectados) == 0:
                         return None
-                    else:        
-                        return lista_afectados                      
+                    else:
+                        return lista_afectados
         else:
             return None
-            
+
 class Medico(Personaje):
     def __init__(self, posicion):
         super().__init__(1, 'no militar', posicion)
     def curar_personaje(self, personaje):
-        pass
+        personaje.vida_acutal = personaje.vida_maxima
 class Artillero(Personaje):
     def __int__(self, posicion):
         super().__init__(2, 'militar', posicion)
         self.danyo = 1
-    def disparo_area(self, casilla):
-        pass
+    def disparo_area(self, personaje):
+        personaje.vida_acutal -= 1
 class Francotirador(Personaje):
     def __int__(self, posicion):
         super().__init__(3, 'militar', posicion)
         self.danyo = 3
-    def disparo_unitario(self, casilla):
-        pass
+    def disparo_unitario(self, personaje):
+        personaje.vida_acutal = 0
 class Inteligencia(Personaje):
     def __int__(self, posicion):
         super().__init__(3, 'militar', posicion)
-    def explorar_area(self, casilla):
-        pass
+    def explorar_area(self, personaje):
+        print(f'El {personaje} esta en la posicion {personaje.poscion}'.format(personaje, personaje.poscion))
