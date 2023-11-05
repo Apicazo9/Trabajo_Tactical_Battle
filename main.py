@@ -57,32 +57,39 @@ def main():
     j2.set_oponente(j1)
 
     final = False
+    contador = 0
     while not final:
-        contador = 0
-
         input('Turno del Jugador 1. Pulsa intro para comenzar \n')
-        final = j1.turno()
-        if final:
-            print("***** El jugador 1 ha ganado la partida! *****")
-            return 0
-        else:
-            print('----SITUACION DEL EQUIPO----')
-            print(j1.situacion_equipo(0))
-            print(j1.situacion_equipo(1))
-            print(j1.situacion_equipo(2))
-            print(j1.situacion_equipo(3), '\n')
-            #for personaje, nombre in personajes:
-                #print(f'{nombre} está en {personaje.posicion} [Vida {personaje.vida_actual} ]')
+        if contador > 0:
+            print('---- INFORME ----')
+            print(informe)
 
-            if contador == 0:
-                print("1: Mover (Medico)")
-                print("2: Mover (Artillero)")
-                print("3: Disparar en área (2x2). Daño 1. (Artillero)")
-                print("4: Mover (Francotirador)")
-                print("5: Disparar a una celda. Daño 3. (Francotirador)")
-                print("6: Mover (Inteligencia)")
-                print("7: Revelar a los enemigos en un área 2x2. (Inteligencia)")
-            else:
+        print('----SITUACION DEL EQUIPO----')
+        j1.situacion_equipo(0)
+        j1.situacion_equipo(1)
+        j1.situacion_equipo(2)
+        j1.situacion_equipo(3)
+
+        if contador == 0:
+            print("1: Mover (Medico)")
+            print("2: Mover (Artillero)")
+            print("3: Disparar en área (2x2). Daño 1. (Artillero)")
+            print("4: Mover (Francotirador)")
+            print("5: Disparar a una celda. Daño 3. (Francotirador)")
+            print("6: Mover (Inteligencia)")
+            print("7: Revelar a los enemigos en un área 2x2. (Inteligencia)")
+
+            num_accion = input('Selecciona la acción de este turno: ')
+            codigo_accion = j1.realizar_accion(contador, num_accion)
+            if codigo_accion is not None:
+                salida = j2.recibir_accion(codigo_accion)
+                informe = salida["informe"]
+                print('---- RESULTADO ACCIÓN ----')
+                print(informe)
+
+        else:
+            seleccion_correcta = False
+            while not seleccion_correcta:
                 print("1: Mover (Medico)")
                 print("2: Curar a un compañero (Medico)")
                 print("3: Mover (Artillero)")
@@ -92,16 +99,71 @@ def main():
                 print("7: Mover (Inteligencia)")
                 print("8: Revelar a los enemigos en un área 2x2. (Inteligencia)")
 
-            num_accion = input('Selecciona la acción de este turno: ')
+                num_accion = input('Selecciona la acción de este turno: ')
+                if (num_accion == '1' or num_accion == '2') and j1.equipo[0].vida_actual > 0:
+                    seleccion_correcta = True
+                elif (num_accion == '3' or num_accion == '4') and j1.equipo[1].vida_actual > 0:
+                    seleccion_correcta = True
+                elif (num_accion == '5' or num_accion == '6') and j1.equipo[2].vida_actual > 0:
+                    seleccion_correcta = True
+                elif (num_accion == '7' or num_accion == '8') and j1.equipo[3].vida_actual > 0:
+                    seleccion_correcta = True
+                else:
+                    print('El personaje está muerto, escoja otra accion: \n')
 
-            j1.realizar_accion(contador, num_accion)
-            #if (contador == 0 and (num_accion == 3 or num_accion == 5)) or (contador > 0 and (num_accion == 4 or num_accion == 6)):
-                #j2.recibir_accion(realizar_accion)
+            codigo_accion = j1.realizar_accion(contador, num_accion)
+            if codigo_accion is not None:
+                salida = j2.recibir_accion(codigo_accion)
+                informe = salida["informe"]
+                estado_partida = salida["estado"]
+                print('---- RESULTADO ACCIÓN ----')
+                print(informe)
+                if estado_partida:
+                    final = True
+
+        final = j2.turno()
+        if final:
+            print("***** El jugador 1 ha ganado la partida! *****")
+            return 0
+
         input('Jugador 1, pulsa intro para terminar tu turno')
         limpiar_terminal()
 
         input('Turno del Jugador 2. Pulsa intro para comenzar')
-        final = j2.turno()
+        contador = 1
+        print('---- INFORME ----')
+        if codigo_accion == None:
+            print('Nada que reportar')
+        else:
+            print(informe)
+
+        print('----SITUACION DEL EQUIPO----')
+        j2.situacion_equipo(0)
+        j2.situacion_equipo(1)
+        j2.situacion_equipo(2)
+        j2.situacion_equipo(3)
+
+        print("1: Mover (Medico)")
+        print("2: Curar a un compañero (Medico)")
+        print("3: Mover (Artillero)")
+        print("4: Disparar en área (2x2). Daño 1. (Artillero)")
+        print("5: Mover (Francotirador)")
+        print("6: Disparar a una celda. Daño 3. (Francotirador)")
+        print("7: Mover (Inteligencia)")
+        print("8: Revelar a los enemigos en un área 2x2. (Inteligencia)")
+
+        num_accion = input('Selecciona la acción de este turno: ')
+        codigo_accion = j2.realizar_accion(contador, num_accion)
+        if codigo_accion is not None:
+            salida = j1.recibir_accion(codigo_accion)
+            informe = salida["informe"]
+            estado_partida = salida["estado"]
+            print('---- RESULTADO ACCIÓN ----')
+            print(informe)
+            if estado_partida:
+                final = True
+
+        final = j1.turno()
         if final:
             print("***** El jugador 2 ha ganado la partida! *****")
             return 0
