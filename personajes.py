@@ -30,47 +30,14 @@ class Artillero(Personaje):
         self.danyo = 1
     def habilidad(self, celda):
         return 'A' + celda
-    def disparo_area(self, personaje):
-        personaje.vida_actual -= 1
 class Francotirador(Personaje):
     def __int__(self):
         super().__init__(3, 'militar', 'Francotirador')
         self.danyo = 3
     def habilidad(self, celda):
         return 'F' + celda
-    def disparo_unitario(self, personaje):
-        personaje.vida_actual = 0
 class Inteligencia(Personaje):
     def __int__(self):
         super().__init__(3, 'militar', 'Inteligencia')
     def habilidad(self, celda):
         return 'I' + celda
-    def explorar_area(self, casilla):
-        #print(f'El {personaje} ha sido avistado {personaje.poscion}'.format(personaje, personaje.poscion))
-
-
-        '''lista_afectados = []
-        if atacante.enfriamineto == 0:
-            if atacante == 'Artillero' or atacante == 'Inteligencia':
-                area = devolver_area(casilla)
-                for personaje in lista_equipo:
-                    for celda in area:
-                        if personaje.posicion == celda:
-                            lista_afectados.append(atacante[0] + casilla)
-                    if len(lista_afectados) == 0:
-                        return None
-                    else:
-                        return lista_afectados
-            elif atacante == 'Francotirador':
-                for personaje in lista_equipo:
-                    if personaje.posicion == casilla:
-                        lista_afectados.append(atacante[0] + casilla)
-                    if len(lista_afectados) == 0:
-                        return None
-                    else:
-                        return lista_afectados
-            else:
-                self.curar_personaje()
-                return None
-        else:
-            return None'''
