@@ -8,7 +8,6 @@ def validar_celda (celda, max_col, max_row) -> bool:
 # comprobar celda contigua
 def validar_celda_contigua(celda_actual, celda_nueva):
     return (chr(ord(celda_actual[0]) + 1) == celda_nueva[0] or chr(ord(celda_actual[0]) - 1) == celda_nueva[0]) or (chr(ord(celda_actual[1]) + 1) == celda_nueva[1] or chr(ord(celda_actual[1]) - 1) == celda_nueva[1])
-
 def personajes_en_area(celda, personajes):
     personajes_afectados = []
 
@@ -21,31 +20,28 @@ def personajes_en_area(celda, personajes):
 #si da algun problema revisa mayusculas y minusculas
 def devolver_area(celda):
     col = celda[0]
-    row = celda[1]
+    row = int(celda[1])
 
     if col == 'd' and row < 4:
-        row += 1
-        return [celda, col + row]
+        return [celda, col + str(row + 1)]
     elif col == 'd' and row == 4:
         return [celda]
     elif row == 4:
         codigo_unicode = ord(col)
         sig_col = chr(codigo_unicode + 1)
-        return [celda, sig_col + row]
+        return [celda, sig_col + str(row)]
     else:
-        celda1 = col + (int(row) + 1)
+        celda1 = col + str(row + 1)
         codigo_unicode = ord(col)
         sig_col = chr(codigo_unicode + 1)
-        celda2 = sig_col + (int(row) + 1)
-        celda3 = sig_col + row
+        sig_row = int(row + 1)
+        celda2 = sig_col + str(row)
+        celda3 = sig_col + str(sig_row)
         return [celda, celda1, celda2, celda3]
-        #celda1 -> abajo izq, celda2 ->
-
 def celda_ocupada(equipo, celda):
     for personaje in equipo:
         if personaje.posicion == celda:
             return True
     return False
-
 def personaje_en_celda(celda):
     pass
