@@ -1,36 +1,4 @@
-from utils import limpiar_terminal
-from jugador import Jugador
 
-def validar_entrada(texto):
-    texto = texto.lower()
-    return texto[0] in 'abcd' and texto[1] in '1234'
-def pedir_posicion(tipo, posiciones):
-    while True:
-        pos = input(f"Indica la celda (A-D, 1-4. p.ej: B2) en la que posicionar al {tipo}: ")
-        if validar_entrada(pos):
-            if pos not in posiciones:
-                return pos
-            else:
-                print('Ups... la celda ya está ocupada!')
-        else:
-            print(f'Ups... valor de celda incorrecta.')
-
-posiciones = []
-def main():
-    print('Bienvenidos a Tactical Battle. A jugar!\n')
-    input('Turno del Jugador 1. Pulsa intro para comenzar\n')
-    print("Vamos a posicionar a nuestros personajes en el tablero!\n")
-
-    j1 = Jugador()
-
-    posiciones.append(pedir_posicion('medico', posiciones))
-    posiciones.append(pedir_posicion('artillero', posiciones))
-    posiciones.append(pedir_posicion('francotirador', posiciones))
-    posiciones.append(pedir_posicion('inteligencia', posiciones))
-
-    j1.crear_equipo()
-    j1.posicionar_equipo(posiciones)
-    print('Posicionamiento terminado')
 
     input('Jugador 1, pulsa terminar tu turno')
     limpiar_terminal()
